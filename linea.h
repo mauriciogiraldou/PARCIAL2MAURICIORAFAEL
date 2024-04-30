@@ -2,17 +2,21 @@
 #define LINEA_H
 #include <string>
 #include <iostream>
-#include "estacion.h"
 using namespace std;
-class Linea
-{
+/*
+La clase linea será un arreglo dinamico de strings, en el cual cada string dentro de ese arreglo dinamico será una estacion.
+*/
+class Linea{
 private:
-    string* nombre;
-
-
+    string nombre;
+    int tamano;
+    string *data;
 
 public:
-    Linea();
+    Linea(const string* values,int size,const string&nombre="");
+    ~Linea();
+    string getValue(int index);
+    string getNombre() const;
 };
 
 #endif // LINEA_H
