@@ -1,18 +1,17 @@
 #include "linea.h"
-Linea::Linea(const string* values, int tamano, const string& nombre)
-    : tamano(tamano), nombre(nombre) {
+Linea::Linea(const string* valores, int tamano, const string& nombre): tamano(tamano), nombre(nombre) {
     data = new string[tamano];
     for (int i = 0; i < tamano; ++i) {
-        data[i] = values[i];
+        data[i] = valores[i];
     }
 }
 Linea::~Linea() {
     delete[] data;
 }
 
-string Linea::getValue(int index) {
-    if (index >= 0 && index < tamano) {
-        return data[index];
+string Linea::getValue(int indice) {
+    if (indice >= 0 && indice < tamano) {
+        return data[indice];
     }
     return "";
 }
