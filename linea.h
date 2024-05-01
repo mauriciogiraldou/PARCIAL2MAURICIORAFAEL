@@ -13,9 +13,9 @@ private:
     string *data;
 
 public:
-    Linea(const string* values,int size,const string&nombre="");
+    Linea(const string* valores,int size,const string&nombre="");
     ~Linea();
-    string getValue(int index);
+    string getValue(int indice);
     string getNombre() const;
 };
 
