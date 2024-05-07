@@ -4,12 +4,12 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
+        estacion.cpp \
+        estacionmatriz.cpp \
         funcines.cpp \
-        linea.cpp \
-        main.cpp \
-        redmetro.cpp
+        main.cpp
 
 HEADERS += \
-    funcion.h \
-    linea.h \
-    redmetro.h
+    estacion.h \
+    estacionmatriz.h \
+    funcion.h
