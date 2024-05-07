@@ -1,0 +1,36 @@
+//Emular vector de vectores prueba 3
+#include <iostream>
+using namespace std;
+
+const int tamanoMax = 100;
+
+int vector[tamanoMax][tamanoMax];//Arreglo 2D.
+int tamano[tamanoMax];//Este arreglo es el tamano de cada vector.
+
+void EmularPushback(int indice, int valor){
+    vector[indice][tamano[indice]] = valor; //para incertar elemento en vector indicado.
+    tamano[indice]++; //Esto incrementa el tamano del vector (para que quepa todo).
+}
+
+void imprimirVector(int indice){
+    for(int i = 0; i < tamano[indice]; i++){
+        cout<<vector[indice][i]<<" ";
+    }
+    cout<<endl;
+}
+
+int main()
+{
+    //Ejemplo de uso:
+    tamano[0] = 0; //se inicializa tamano del primer vector.
+    
+    //Ejemplo de como insertar elementos en el vector.
+    EmularPushback(0, 1);
+    EmularPushback(0, 2);
+    EmularPushback(0, 6);
+    
+    //Imprimiendo el PRIMER vector:
+    imprimirVector(0);
+
+    return 0;
+}
