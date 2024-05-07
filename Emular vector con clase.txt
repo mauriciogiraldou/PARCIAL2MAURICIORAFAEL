@@ -1,0 +1,58 @@
+//Emular vector con clase.
+#include <iostream>
+using namespace std;
+
+class Vector{
+  private: //Atributos.
+    int tamano;
+    int capacidad;
+    int** arreglo;
+  
+  public://Metodos.
+    Vector(){
+        tamano = 0;
+        capacidad = 2; 
+        arreglo = new int* [capacidad];
+    }
+    
+  void EmularPushback(int elemento){//Setter
+      if(tamano == capacidad){
+          capacidad *= 2;
+          int** temporal = new int*[capacidad];
+          for(int i = 0; i < tamano; i++){
+              temporal[i] = arreglo[i];
+          }
+          
+          delete[] arreglo;
+          arreglo = temporal;
+      }
+      
+      arreglo[tamano] = new int(elemento);
+      tamano++;
+  } 
+  
+  int& operator[](int indice){ // Getter. Con operador de indexacion sobrecargado con 'operator'.
+      return *arreglo[indice];
+  }
+  
+  int getTamano(){ //Getter. 
+      return tamano;
+  }
+};
+
+int main()
+{
+    //Modo de uso.
+    Vector vec1;
+    
+    vec1.EmularPushback(1);
+    vec1.EmularPushback(3);
+    vec1.EmularPushback(26);
+    vec1.EmularPushback(4);
+    
+    for(int i = 0; i < vec1.getTamano(); i++){
+        cout<<vec1[i]<<" ";
+    }
+
+    return 0;
+}
