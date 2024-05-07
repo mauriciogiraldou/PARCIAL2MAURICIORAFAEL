@@ -3,8 +3,8 @@
 #include <iostream>
 #include <string>
 #include <cctype>
+#include "estacionmatriz.h"
 using namespace std;
-void mostrarMenu();
-bool esNumeroValido(const string& str);
-int pedirNumeroValido();
+EstacionMatriz inicializarmatriz(int n);
+void crearestacion(EstacionMatriz& sistemametro, int fila, int columna);
 #endif // FUNCION_H
