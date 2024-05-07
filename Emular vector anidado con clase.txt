@@ -1,0 +1,103 @@
+//Emular vector anidado en vector.
+#include <iostream>
+using namespace std;
+
+class EmularVector{
+  private:
+    int** vector;
+    int filas;
+    int columnas;
+ 
+  public:
+    EmularVector(int filas, int columnas){
+        this->filas = filas;
+        this->columnas = columnas;
+        vector = new int*[filas];
+        for (int i = 0; i < filas; i++){
+            vector[i] = new int[columnas];
+        }
+    }
+   
+  void EmularPush(int fila, int columna, int valor){
+      if(fila < filas && columna < columnas){
+          vector[fila][columna] = valor;
+      }
+  }
+ 
+  void EmularPushBack(int fila, int valor){
+      if(fila < filas){
+          for(int i = 0; i < columnas; i++){
+              if(vector[fila][i] == 0){
+                  vector[fila][i] = valor;
+                  break;
+              }
+          }
+      }
+  }
+ 
+void EmularInsert(int fila, int columna, int valor){
+    if(fila < filas && columna < columnas){
+        // Desplazar las filas hacia abajo
+        for(int i = filas - 1; i > fila; i--){
+            for(int j = 0; j < columnas; j++){
+                vector[i][j] = vector[i-1][j];
+            }
+        }
+       
+        // Insertar el valor en la posicion especifica
+        vector[fila][columna] = valor;
+    }
+}
+void EmularPop(int fila, int columna){
+    if(fila < filas && columna < columnas){
+        // Eliminar el valor en la posición especifica
+        int valorEliminado = vector[fila][columna];
+
+        // Desplazar las filas hacia arriba para llenar el espacio vacio
+        for(int i = fila; i < filas - 1; i++){
+            for(int j = 0; j < columnas; j++){
+                vector[i][j] = vector[i+1][j];
+            }
+        }
+
+        // Rellenar la ultima fila con ceros (o cualquier valor predeterminado)
+        for(int j = 0; j < columnas; j++){
+            vector[filas - 1][j] = 0; 
+        }
+
+        // Retornar el valor eliminado (si se necesita)
+        // return valorEliminado;
+    }
+}
+
+ 
+  void imprimir(){
+      for(int i = 0; i < filas; i++){
+          for(int j = 0; j < columnas; j++){
+              cout<<vector[i][j]<<" ";
+          }
+          cout<<endl;
+      }
+  }
+ 
+  ~EmularVector(){
+      for(int i = 0; i < filas; i++){
+         delete[] vector[i];
+      }
+      delete[] vector;
+  }
+ 
+};
+
+int main()
+{
+    //Ejemplo de uso:
+   EmularVector vec(3, 3); //Se le dio una dimension de 3x3.
+   vec.EmularInsert(1, 2, 7);
+   vec.imprimir();
+   cout<<endl;
+   vec.EmularPop(1,2);
+   vec.imprimir();
+   
+    return 0;
+}
