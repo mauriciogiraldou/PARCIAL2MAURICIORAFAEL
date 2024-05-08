@@ -1,0 +1,80 @@
+//Emular vector anidado en vector.
+#include <iostream>
+using namespace std;
+
+class EmularVector{
+  private:
+    string** vector;
+    int filas;
+    int columnas;
+  
+  public:
+    EmularVector(int filas, int columnas){ 
+        this->filas = filas;
+        this->columnas = columnas;
+        vector = new string*[filas];
+        for (int i = 0; i < filas; i++){
+            vector[i] = new string[columnas];
+        }
+    }
+    
+  void EmularPush(int fila, int columna, string valor){
+      if(fila < filas && columna < columnas){
+          vector[fila][columna] = valor;
+      }
+  }
+  
+  void EmularPushBack(int fila, string valor){
+      if(fila < filas){
+          for(int i = 0; i < columnas; i++){
+              if(vector[fila][i] == ""){
+                  vector[fila][i] = valor;
+                  break;
+              }
+          }
+      }
+  }
+  
+  void EmularInsert(int fila, int columna, string valor){
+      if(fila < filas && columna < columnas){
+          for(int i = filas - 1; i > fila; i--){
+              vector[i] = vector[i-1];
+          }
+          
+          vector[fila][columna] = valor;
+      }
+  }
+  
+  void imprimir(){
+      for(int i = 0; i < filas; i++){
+          for(int j = 0; j < columnas; j++){
+              cout<<vector[i][j]<<" ";
+          }
+          cout<<endl;
+      }
+  }
+  
+  ~EmularVector(){
+      for(int i = 0; i < filas; i++){
+         delete[] vector[i]; 
+      }
+      delete[] vector;
+  }
+  
+};
+
+int main()
+{
+    //Modo de uso:
+   EmularVector vec(3, 3); //Se le dio una dimension de 3x3.
+   vec.EmularPush(0, 0, "Hola");
+   vec.EmularPush(1, 1, "Chao");
+   vec.EmularPush(2, 2, "Estacion1");
+   vec.EmularPushBack(0, "Estacion2");
+   vec.EmularPushBack(1, "Estacion 3");
+   vec.EmularPushBack(2, "Estacion 4");
+   vec.EmularInsert(1, 2, "Estacion5");
+   vec.imprimir();
+   
+    return 0;
+}
