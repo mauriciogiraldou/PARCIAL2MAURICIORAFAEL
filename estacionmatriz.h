@@ -1,7 +1,6 @@
 #ifndef ESTACIONMATRIZ_H
 #define ESTACIONMATRIZ_H
 #include "Estacion.h"
-
 class EstacionMatriz {
 private:
     Estacion*** matriz;
