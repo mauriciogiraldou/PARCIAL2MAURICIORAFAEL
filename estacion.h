@@ -6,7 +6,7 @@ using namespace std;
 class Estacion {
 private:
     string* nombre;
-    string tiempo;
+    int tiempo;
 public:
     Estacion(const string&);
     ~Estacion();
@@ -18,3 +18,4 @@ public:
 };
 
 #endif // ESTACION_H
+
